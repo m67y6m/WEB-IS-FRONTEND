@@ -1,0 +1,15 @@
+/* analytics.component.css */
+
+.container-fluid {
+    padding: 0;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  canvas {
+    display: block;
+    margin: auto;
+  }
+  

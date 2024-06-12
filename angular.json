@@ -37,7 +37,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -106,5 +107,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f2e9cd8e-e3f6-42e3-9fc4-835049c3f728"
   }
 }
