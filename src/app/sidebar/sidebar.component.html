@@ -4,6 +4,7 @@
     <div class="main-navbar" >
       <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0" >
         <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;" style="background-color:#E3F2FD">
+          
           <div class="d-table m-auto" >
             <span class="d-none d-md-inline ml-1"> Dashboard</span>
           </div>
@@ -24,7 +25,8 @@
       </div>
     </form>
     <div class="nav-wrapper">
-      <ul class="nav flex-column">
+      <ul class="nav flex-column" *ngIf="userRole === 'admin'">
+      
         <li class="nav-item">
           <a class="nav-link " routerLink="/dashboard" routerLinkActive="active">
             <i class="material-icons">dashboard</i>
@@ -41,6 +43,12 @@
           <a class="nav-link" routerLink="/booking" routerLinkActive="active">
             <i class="material-icons">book_online</i>
             <span>Bookings</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/package" routerLinkActive="active">
+            <i class="material-icons">holiday_village</i>
+            <span>Packages</span>
           </a>
         </li>
         <li class="nav-item">
@@ -68,6 +76,34 @@
           </a>
         </li>
       </ul>
+
+      <ul class="nav flex-column" *ngIf="userRole === 'customer'">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/customerHome" routerLinkActive="active">
+            <i class="material-icons">dashboard</i>
+            <span> Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/customerBookings" routerLinkActive="active">
+            <i class="material-icons">book_online</i>
+            <span>CustomerBookings</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/customerPayments" routerLinkActive="active">
+            <i class="material-icons">payments</i>
+            <span>CustomerPayments</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/settings" routerLinkActive="active">
+            <i class="material-icons">settings</i>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+      
     </div>
   </aside>
   <!-- End Main Sidebar -->

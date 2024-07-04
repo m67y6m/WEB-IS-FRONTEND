@@ -19,7 +19,7 @@
               </div>
             </form>
             <ul class="navbar-nav border-left flex-row">
-             
+              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                   <img class="user-avatar rounded-circle mr-2" style="border-radius: 50%; width: 40px; height: 40px;" src="assets/images/avatars/me.jpeg" alt="User Avatar">
@@ -46,27 +46,69 @@
           <!-- Page Header -->
           <div class="page-header row no-gutters py-4">
             <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-              <h1 class="page-title">Settings </h1>
-             
+              <h1 class="page-title">Packages</h1>
+              <br>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: fit-content;">Add New Package</button>
             </div>
           </div>
           <!-- End Page Header -->
-         
-          <!--tables insert here  -->
 
-          <div class="container">
-            <form action="action_page.php">
-          
-              <input type="text" id="fname" name="firstname" placeholder="New Password" required="">
-          
-              <input type="text" id="lname" name="lastname" placeholder="Confirm Password" required="">
-          
-              <button type="submit">Submit</button>
-          
-            </form>
+           <!--tables insert here  -->
+
+           <section class="table__header">
+        </section>
+        <section class="table__body">
+            <h4>Packages Available</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th> Package Id</th>
+                        <th> Package Type </th>
+                        <th> Package Price </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let package of package">
+                        <td>{{package.packageId}}</td>
+                        <td>{{ package.packageType }}</td>
+                        <td>{{ package.packagePrice }}</td>
+                    
+                      </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label for="package-type" class="col-form-label">Package Type:</label>
+                      <input type="text" class="form-control" id="package-type" formControlName="packageType">
+                    </div>
+                    <div class="form-group">
+                      <label for="package-price" class="col-form-label">Package Price:</label>
+                      <input type="text" class="form-control" id="package-price" formControlName="packagePrice">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <!-- END OF DATA -->
+          <!-- end of table -->
+
         </div>
         <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
           <span class="copyright ml-auto my-auto mr-2"> 2024

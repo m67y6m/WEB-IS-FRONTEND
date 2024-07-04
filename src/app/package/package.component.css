@@ -1,4 +1,4 @@
-/* main.table {
+main.table {
     width: 82vw;
     height: 90vh;
     background-color: #fff5;
@@ -129,6 +129,11 @@ tbody tr:hover {
     background-color: #fff6 !important;
 }
 
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+    transition: .2s ease-in-out;
+}
 
 tbody tr.hide td,
 tbody tr.hide td p {
@@ -137,66 +142,108 @@ tbody tr.hide td p {
     transition: .2s ease-in-out .5s;
 }
 
-thead th.active,tbody td.active {
-    color: #6c00bd;
-} */
+tbody tr.hide td img {
+    width: 0;
+    height: 0;
+    transition: .2s ease-in-out .5s;
+}
 
-/* Add styles for status classes */
 .status {
     padding: .4rem 0;
     border-radius: 2rem;
     text-align: center;
-  }
-  
-  
-  .approved {
+}
+
+.status.paid {
     background-color: #86e49d;
     color: #006b21;
-  }
-  
-  .cancelled {
-    background-color: #d893a3;
-    color: #b30021;
-  }
-  
-  .pending {
-    background-color: #ebc474;
-  }
-  
-  .expired {
-    background-color: #bcc5c7;
-    padding: 5px;
-  }
+}
 
-  .approved .cancelled .expired .pending{
-    margin: 20px;
-    height: 10px;
-    padding: 5px;
-  }
-  
-  /* Additional table styles */
-  table {
+
+
+@media (max-width: 1000px) {
+    td:not(:first-of-type) {
+        min-width: 12.1rem;
+    }
+}
+
+
+thead th.active,tbody td.active {
+    color: #6c00bd;
+}
+
+.export__file {
+    position: relative;
+}
+
+.export__file .export__file-btn {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background: #fff6 url(../../assets/images/avatars/0.jpg) center / 80% no-repeat;
+    border-radius: 50%;
+    transition: .2s ease-in-out;
+}
+
+.export__file .export__file-btn:hover { 
+    background-color: #fff;
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.export__file input {
+    display: none;
+}
+
+.export__file .export__file-options {
+    position: absolute;
+    right: 0;
+    
+    width: 12rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    text-align: center;
+
+    opacity: 0;
+    transform: scale(.8);
+    transform-origin: top right;
+    
+    box-shadow: 0 .2rem .5rem #0004;
+    
+    transition: .2s;
+}
+
+.export__file input:checked + .export__file-options {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 100;
+}
+
+.export__file .export__file-options label{
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 1rem;
-    text-align: left;
-  }
-  
-  thead th {
-    position: sticky;
-    top: 0;
-    background-color: #d5d1defe;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #0000000b;
-  }
-  
-  tbody tr:hover {
-    background-color: #fff6 !important;
-  }
-  
+    padding: .6rem 0;
+    background-color: #f2f2f2;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
+    transition: .2s ease-in-out;
+}
+
+.export__file .export__file-options label:first-of-type{
+    padding: 1rem 0;
+    background-color: #86e49d !important;
+}
+
+.export__file .export__file-options label:hover{
+    transform: scale(1.05);
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.export__file .export__file-options img{
+    width: 2rem;
+    height: auto;
+}

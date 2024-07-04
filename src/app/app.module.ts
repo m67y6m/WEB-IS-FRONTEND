@@ -15,7 +15,13 @@ import { CustomerComponent } from './customer/customer.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LayoutComponent } from './layout/layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
-import { HeaderComponent } from './header/header.component';
+import { PackageComponent } from './package/package.component';
+import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { CustomerBookingsComponent } from './customer-bookings/customer-bookings.component';
+import { CustomerPaymentsComponent } from './customer-payments/customer-payments.component';
+import { AuthService } from './auth.service';
+
+
 
 @NgModule({
   declarations: [
@@ -26,12 +32,17 @@ import { HeaderComponent } from './header/header.component';
     RoomComponent,
     BookingComponent,
     PaymentComponent,
+    PackageComponent,
     AnalyticsComponent,
     CustomerComponent,
     SettingsComponent,
     LayoutComponent,
     MainLayoutComponent,
-    HeaderComponent
+    PackageComponent,
+    CustomerHomeComponent,
+    CustomerBookingsComponent,
+    CustomerPaymentsComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -40,7 +51,7 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -43,8 +43,7 @@
         <!-- Page Header -->
         <div class="page-header row no-gutters py-4">
           <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <h1 class="page-title">Rooms</h1>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: fit-content;">Add New Room</button>
+            <h1 class="page-title">Rooms:</h1>
           </div>
         </div>
         <!-- End Page Header -->
@@ -57,46 +56,71 @@
               <p>Room Type: {{ room.roomType }}</p>
               <p>Room Status: {{ room.roomStatus }}</p>
               <p>Price: {{ room.roomPrice }} $</p>
-              <button>Edit</button>
-              <button class="delete" (click)="confirmDelete(room.roomId)">Delete</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: fit-content;">Book Now</button>
             </div>
           </div>
         </div>
-        
+        <br>
 
-        <!-- Modal for Adding New Room -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form [formGroup]="roomForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label for="room-type" class="col-form-label">Room type:</label>
-                    <input type="text" class="form-control" id="room-type" formControlName="roomType">
-                  </div>
-                  <div class="form-group">
-                    <label for="room-price" class="col-form-label">Room price:</label>
-                    <input type="number" class="form-control" id="room-price" formControlName="roomPrice">
-                  </div>
-                  <div class="form-group">
-                    <label for="room-picture" class="col-form-label">Room picture:</label>
-                    <input type="file" class="form-control" id="room-picture" (change)="onFileChange($event)">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                  </div>
-                </form>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="customerHomeForm" (ngSubmit)="onSubmit()">
+                    
+                    <div class="form-group">
+                      <label for="package-type" class="col-form-label">Package Type:</label>
+                      <input type="text" class="form-control" id="package-type" formControlName="packageType">
+                    </div>
+                    <div class="form-group">
+                      <label for="check-in-Date" class="col-form-label">Check-in-Date:</label>
+                      <input type="text" class="form-control" id="check-in-Date" formControlName="checkInDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="check-out-Date" class="col-form-label">Check-out-Date:</label>
+                        <input type="text" class="form-control" id="check-out-Date" formControlName="checkOutDate">
+                      </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Add Booking</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- End of Modal -->
+
+
+        <div class="page-header row no-gutters py-4">
+            <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+              <h1 class="page-title">Packages Available:</h1>
+            </div>
+          </div>
+        <section class="table__body">
+            <table>
+              <thead>
+                <tr>
+                  <th> Package Id</th>
+                  <th> Package Type </th>
+                  <th> Package Price </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let package of packages">
+                  <td>{{ package.packageId }}</td>
+                  <td>{{ package.packageType }}</td>
+                  <td>{{ package.packagePrice }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          
+        
 
       </div>
       <!-- End of Main Content Container -->

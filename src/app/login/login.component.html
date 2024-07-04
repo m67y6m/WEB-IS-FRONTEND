@@ -9,10 +9,13 @@
     <input
       placeholder="E-mail"
       id="email"
-      name="email"
-      type="email"
+      name="username"
+      type="text"
       class="input"
       required=""
+      [(ngModel)]="loginModel.username"
+      [(ngModel)]="customerLogInModel.customerEmail"
+
     />
     <input
       placeholder="Password"
@@ -21,6 +24,8 @@
       [type]="passwordFieldType"
       class="input"
       required=""
+      [(ngModel)]="loginModel.password"
+      [(ngModel)]="customerLogInModel.customerPassword"
     />
     <br>
     <br>
