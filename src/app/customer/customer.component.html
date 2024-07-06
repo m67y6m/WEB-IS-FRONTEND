@@ -62,7 +62,7 @@
                 <th>Customer Email</th>
                 <th>Customer Phone</th>
                 <th>Customer Nationality</th>
-                <th>Customer Status</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -71,18 +71,7 @@
                 <td>{{ customer.customerEmail }}</td>
                 <td>{{ customer.customerPhone }}</td>
                 <td>{{ customer.customerNationality }}</td>
-                <td>
-                  {{ customer.customerStatus }}
-                  <div class="cl-toggle-switch">
-                    <label class="switch">
-                      <input type="checkbox"
-                        [checked]="customer.customerStatus === 'ACTIVE'"
-                        (change)="toggleCustomerStatus(customer)"
-                      />
-                      <span class="slider"></span>
-                    </label>
-                  </div>
-                </td>
+               
               </tr>
             </tbody>
           </table>

@@ -8,60 +8,59 @@ import { BookingComponent, Bookings } from './booking/booking.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { response } from 'express';
 import { error } from 'console';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   [x: string]: any;
-  private baseUrl = 'http://localhost:8080';
+  public baseUrl = 'http://localhost:8080';
   private isLoggedInStatus = false;
 
   constructor(private http: HttpClient) { }
+  
+  logIn (admin: any): Observable<any> {
 
-  logIn(admin: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/authentication/signIn`, admin).pipe(
       tap(response => {
-        if (response.message === 'SignIn Successful' && typeof localStorage !== 'undefined') {
+        if (response.message ===  'SignIn Successfull') {
           localStorage.setItem('role', response.role);
-          this.isLoggedInStatus = true;
+            this.isLoggedInStatus = true;
         }
       }),
-      catchError((error: HttpErrorResponse) => {
+      catchError((error: HttpErrorResponse)=> {
         console.error('Signing In Error', error);
-        return throwError(() => new Error(error.error.message || 'SignIn Failed'));
+        return throwError (() => new Error(error.error.message || 'SignIn Failed'))
       })
-    );
+    ); 
   }
 
-  customerLogIn(customer: any): Observable<any> {
+  customerLogIn (customer: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/customers/customerLogIn`, customer).pipe(
       tap(response => {
-        if (response.message === 'SignIn Successfully' && typeof localStorage !== 'undefined') {
+        if (response.message ===  'SignIn Successfully') {
           localStorage.setItem('role', response.role);
-          this.isLoggedInStatus = true;
+          localStorage.setItem('id', response.id);
+            this.isLoggedInStatus = true;
         }
       }),
-      catchError((error: HttpErrorResponse) => {
+      catchError((error: HttpErrorResponse)=> {
         console.error('Signing In Error', error);
-        return throwError(() => new Error(error.error.message || 'Incorrect Email Or Password'));
+        return throwError (() => new Error(error.error.message || 'Incorrect Email Or Password'))
       })
-    );
+    ); 
   }
+  
+
 
   logout(): Observable<any> {
     return this.http.post(`${this.baseUrl}/admin/logout`, {}).pipe(
+
       tap(() => {
         this.isLoggedInStatus = false;
-        if (typeof localStorage !== 'undefined') {
-          localStorage.removeItem('token');
-          localStorage.removeItem('role');
-        }
       })
     );
   }
-
-  // Other methods...
-
 
   checkSession(): Observable<any> {
     return this.http.get<any> (`${this.baseUrl}/authentication/checkSession`).pipe(
@@ -80,6 +79,9 @@ export class AuthService {
     return this.isLoggedInStatus;
   }
 
+  getBookingsByCustomerId(customerId: number): Observable<Bookings[]> {
+    return this.http.get<Bookings[]>(`${this.baseUrl}/bookings/getByCustomerId/${customerId}`);
+  }
 
   addRoom(room: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/rooms/add`, room);

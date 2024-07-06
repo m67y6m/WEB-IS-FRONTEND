@@ -40,8 +40,49 @@
       </div>
        <!-- / .main-navbar -->
        <div class="main-content-container container-fluid px-4">
-        
-       </div>
+        <section class="table__body">
+          <h4>Your Bookings</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Customer</th>
+                <th>Room Type</th>
+                <th>Room Price</th>
+                <th>Package Type</th>
+                <th>Package Price</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+                <th>Status</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let booking of loginCustomerBookings">
+                <td>{{ booking.bookingId }}</td>
+                <td>{{ booking.customers.customerName }}</td>
+                <td>{{ booking.rooms.roomType }}</td>
+                <td>{{ booking.rooms.roomPrice }}</td>
+                <td>{{ booking.packages.packageType }}</td>
+                <td>{{ booking.packages.packagePrice }}</td>
+                <td>{{ booking.checkInDate | date: 'dd MMM, yyyy' }}</td>
+                <td>{{ booking.checkOutdate | date: 'dd MMM, yyyy' }}</td>
+                <td>
+                  <p class="status" [ngClass]="{
+                    'approved': booking.status === 'APPROVED',
+                    'cancelled': booking.status === 'CANCELLED',
+                    'pending': booking.status === 'PENDING',
+                    'expired': booking.status === 'EXPIRED'
+                  }">{{ booking.status }}</p>
+                </td>
+                <td><strong>{{ booking.price | currency }}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+       
+
         <!-- Page Header -->
    
       <!-- End of Main Content Container -->

@@ -35,7 +35,7 @@ export class LoginComponent {
         const role = response.role;
         const name = response.name;
         if(response.message === 'SignIn Successfull') {
-          this.router.navigate([role === 'admin' ? '/dashboard' : '']);
+          this.router.navigate(['/dashboard']);
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -80,7 +80,8 @@ export class LoginComponent {
         const role = response.role;
         const name = response.name;
         if(response.message === 'SignIn Successfully') {
-          this.router.navigate([role === 'customer' ? '/customerHome' : '']);
+          this.router.navigate(['/customerHome']);
+          localStorage.setItem('id', response.id);
         }
       },
       (error: any) => {

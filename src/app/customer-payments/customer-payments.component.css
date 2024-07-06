@@ -1,0 +1,26 @@
+
+
+/* Additional table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #d5d1defe;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #0000000b;
+  }
+  
+  tbody tr:hover {
+    background-color: #fff6 !important;
+  }

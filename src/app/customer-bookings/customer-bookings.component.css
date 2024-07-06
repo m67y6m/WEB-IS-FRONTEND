@@ -1,0 +1,59 @@
+
+.status {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+  }
+  
+  
+  .approved {
+    background-color: #86e49d;
+    color: #006b21;
+  }
+  
+  .cancelled {
+    background-color: #d893a3;
+    color: #b30021;
+  }
+  
+  .pending {
+    background-color: #ebc474;
+  }
+  
+  .expired {
+    background-color: #bcc5c7;
+    padding: 5px;
+  }
+
+  .approved .cancelled .expired .pending{
+    margin: 20px;
+    height: 10px;
+    padding: 5px;
+  }
+  
+  /* Additional table styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #d5d1defe;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #0000000b;
+  }
+  
+  tbody tr:hover {
+    background-color: #fff6 !important;
+  }
+  
+
