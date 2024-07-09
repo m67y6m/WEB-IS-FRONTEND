@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 export interface Bookings {
   rooms: any;
@@ -39,6 +40,8 @@ export class CustomerBookingsComponent implements OnInit {
   rooms: Rooms[] = [];
   customers: Customer[] = [];
   loginCustomerBookings: any[] = [];
+  baseUrl: any;
+  bookings: any;
   
   constructor(
     private authService: AuthService, 
@@ -66,4 +69,79 @@ export class CustomerBookingsComponent implements OnInit {
       console.error('Customer ID not found in localStorage')
     }
   }
+
+
+  cancelBooking(bookingId: number) {
+    const url = `${this.authService.baseUrl}/bookings/cancel/${bookingId}`; // Use the correct endpoint
+    this.http.put(url, {}, { responseType: 'text' }).subscribe(
+      response => {
+        console.log('Booking cancelled:', response);
+        Swal.fire({
+          icon: "error",
+          title: "Booking Cancelled",
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        // Update the booking status locally
+        const booking = this.loginCustomerBookings.find((b: { bookingId: number; }) => b.bookingId === bookingId);
+        if (booking) {
+          booking.status = 'CANCELLED';
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error cancelling booking:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Error Cancelling Booking",
+          text: error.message,
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+      }
+    );
+  }
+
+  makePayment(bookingId: number) {
+    const url = `${this.authService.baseUrl}/bookings/pay/${bookingId}`; // Use the correct endpoint
+    this.http.put(url, {}, { responseType: 'text' }).subscribe(
+      response => {
+        console.log('Payment Sucessful:', response);
+        Swal.fire({
+          icon: "success",
+          title: "Payment Done",
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        // Update the booking status locally
+        const booking = this.loginCustomerBookings.find((b: { bookingId: number; }) => b.bookingId === bookingId);
+        if (booking) {
+          booking.status = 'PAID';
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error Making Payment:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Error Making Payment",
+          text: error.message,
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+      }
+    );
+  }
+  
+
 }

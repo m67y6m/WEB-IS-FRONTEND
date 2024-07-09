@@ -16,7 +16,6 @@
             </div>
           </form>
           <ul class="navbar-nav border-left flex-row">
-            
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <img class="user-avatar rounded-circle mr-2" style="border-radius: 50%; width: 40px; height: 40px;" src="assets/images/avatars/me.jpeg" alt="User Avatar">
@@ -38,8 +37,8 @@
           </nav>
         </nav>
       </div>
-       <!-- / .main-navbar -->
-       <div class="main-content-container container-fluid px-4">
+      <!-- / .main-navbar -->
+      <div class="main-content-container container-fluid px-4">
         <section class="table__body">
           <h4>Your Bookings</h4>
           <table>
@@ -55,6 +54,8 @@
                 <th>Check-out Date</th>
                 <th>Status</th>
                 <th>Price</th>
+                <th>Action</th>
+                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -76,15 +77,18 @@
                   }">{{ booking.status }}</p>
                 </td>
                 <td><strong>{{ booking.price | currency }}</strong></td>
+                <td>
+                  <button *ngIf="booking.status === 'PENDING'" (click)="cancelBooking(booking.bookingId)" class="btn btn-danger">Cancel</button>
+                </td>
+                <td>
+                  <button style="background-color: rgb(97, 240, 97);" *ngIf="booking.status === 'APPROVED'" (click)="makePayment(booking.bookingId)" class="btn btn-sucess">PAY NOW</button>
+                </td>
               </tr>
             </tbody>
           </table>
         </section>
       </div>
-       
-
-        <!-- Page Header -->
-   
+      <!-- Page Header -->
       <!-- End of Main Content Container -->
       <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
         <span class="copyright ml-auto my-auto mr-2">2024

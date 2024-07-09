@@ -127,9 +127,14 @@ export class AuthService {
     return this.http.get<Package[]>(`${this.baseUrl}/package/get`);
   }
 
-  deletePackage(packageId: number): Observable<any> {
-    return this.http.delete<Package[]>(`${this.baseUrl}/package/delete/${packageId}`);
+  updatePackage(packageId: number, packageData: Package): Observable<Package> {
+    return this.http.put<Package>(`${this.baseUrl}/package/update/${packageId}`, packageData);
   }
+
+  deletePackage(packageId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}package/delete/${packageId}`);
+  }
+
 
   // addBooking(bookings: any): Observable<any> {
   //   return this.http.post(`${this.baseUrl}/bookings/add`, bookings)
