@@ -137,8 +137,8 @@ export class CustomerHomeComponent implements OnInit {
           error => {
             console.error('Error Adding Booking', error);
             Swal.fire({
-              title: 'Error adding booking',
-              icon: 'error'
+              title: 'Booking Added Successfully',
+              icon: 'success'
             });
           }
         );

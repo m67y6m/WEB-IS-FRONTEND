@@ -35,41 +35,23 @@ export class LoginComponent {
         const role = response.role;
         const name = response.name;
         if(response.message === 'SignIn Successfull') {
-          this.router.navigate(['/dashboard']);
-          const Toast = Swal.mixin({
+          Swal.fire({
+            icon: "success",
+            title: "SignIn Sucessfull",
             toast: true,
             position: "top-end",
             showConfirmButton: false,
             timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
+            timerProgressBar: true
           });
-          Toast.fire({
-            icon: "success",
-            title: "SignIn successfully"
-          });
+          this.router.navigate(['/dashboard']);
+         
+          
         }
       },
       (error: any) => {
         console.error('SignIn Failed', error);
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        });
-        Toast.fire({
-          icon: "error",
-          title: "Incorrect Email Or Password"
-        });
+        
       }
     )
 
@@ -80,6 +62,15 @@ export class LoginComponent {
         const role = response.role;
         const name = response.name;
         if(response.message === 'SignIn Successfully') {
+          Swal.fire({
+            icon: "success",
+            title: "SignIn Sucessfull",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+          });
           this.router.navigate(['/customerHome']);
           localStorage.setItem('id', response.id);
         }

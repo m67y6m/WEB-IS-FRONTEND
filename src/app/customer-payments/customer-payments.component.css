@@ -1,6 +1,5 @@
 
 
-/* Additional table styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -23,4 +22,21 @@ table {
   
   tbody tr:hover {
     background-color: #fff6 !important;
+  }
+
+  .status {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+
+    .paid {
+      background-color: rgb(79, 174, 236);
+    }
+  
+     .paid{
+      margin: 20px;
+      height: 10px;
+      padding: 5px;
+    }
+
   }
