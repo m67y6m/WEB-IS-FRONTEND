@@ -73,7 +73,8 @@
                     'approved': booking.status === 'APPROVED',
                     'cancelled': booking.status === 'CANCELLED',
                     'pending': booking.status === 'PENDING',
-                    'expired': booking.status === 'EXPIRED'
+                    'expired': booking.status === 'EXPIRED',
+                    'paid': booking.status === 'PAID'
                   }">{{ booking.status }}</p>
                 </td>
                 <td><strong>{{ booking.price | currency }}</strong></td>

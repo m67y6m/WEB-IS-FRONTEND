@@ -91,6 +91,11 @@ export class AuthService {
     return this.http.get<Room[]>(`${this.baseUrl}/rooms/get`);
   }
 
+  updateRoom(roomId: number, room: FormData): Observable<any> {
+    return this.http.put(`${this.baseUrl}/rooms/update/${roomId}`, room);
+  }
+  
+
   deleteRoom(roomId: number): Observable<any> {
     return this.http.delete<Room[]>(`${this.baseUrl}/rooms/delete/${roomId}`);
   }
